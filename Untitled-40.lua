@@ -5,32 +5,27 @@ local CoreGui = game:GetService("CoreGui")
 local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 
--- สร้าง ScreenGui
 local toggleGui = Instance.new("ScreenGui")
 toggleGui.Name = "ToggleUI"
-toggleGui.Parent = CoreGui  -- วางบน CoreGui
+toggleGui.Parent = CoreGui
 
--- สร้างปุ่ม
 local toggleButton = Instance.new("TextButton")
 toggleButton.Size = UDim2.new(0, 60, 0, 20)
-toggleButton.AnchorPoint = Vector2.new(0.5, 0.5) -- กึ่งกลางปุ่ม
-toggleButton.Position = UDim2.new(0.5, 0, 0.5, 0) -- กึ่งกลางหน้าจอ
+toggleButton.AnchorPoint = Vector2.new(0.5, 0.5)
+toggleButton.Position = UDim2.new(0.5, 0, 0.5, 0)
 toggleButton.Text = "Open UI"
 toggleButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 toggleButton.Parent = toggleGui
 toggleButton.AutoButtonColor = false
 
--- สถานะเปิด/ปิด UI
 local isOpen = false
 
--- ฟังก์ชันกด Ctrl ขวา
 local function pressCtrlRight()
     VirtualInputManager:SendKeyEvent(true, Enum.KeyCode.RightControl, false, game)
     VirtualInputManager:SendKeyEvent(false, Enum.KeyCode.RightControl, false, game)
 end
 
--- เมื่อกดปุ่ม
 toggleButton.MouseButton1Click:Connect(function()
     isOpen = not isOpen
     if isOpen then
@@ -41,7 +36,6 @@ toggleButton.MouseButton1Click:Connect(function()
     pressCtrlRight()
 end)
 
--- การลากปุ่ม
 local dragging = false
 local offset = Vector2.new(0,0)
 
